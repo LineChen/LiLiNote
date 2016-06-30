@@ -20,12 +20,15 @@ android {
 }
 
 dependencies {
+    compile project(path: ':multi-image-selector')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:design:23.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.getbase:floatingactionbutton:1.10.1'
+
+//    圆形图片
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
 //    按键波纹效果
@@ -33,4 +36,8 @@ dependencies {
 
 //    沉浸栏
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+//    滑动销毁Activity
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
+
 }

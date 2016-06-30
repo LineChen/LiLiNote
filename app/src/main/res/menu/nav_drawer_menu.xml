@@ -22,7 +22,7 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="分享" />
+                android:title="制作GIF图片" />
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_menu_manage"
