@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_id">
+        <item
+            android:id="@+id/nav_default"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="默认" />
+        <item
+            android:id="@+id/nav_note"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="便签" />
+        <item
+            android:id="@+id/nav_note_diary"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="日记" />
+    </group>
+
+    <item android:title="系统功能">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="制作GIF图片" />
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="设置" />
+        </menu>
+    </item>
+
+</menu>
