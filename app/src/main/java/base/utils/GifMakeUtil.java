@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class GifMakeUtil {
 
-    public static void createGif(List<String> paths, int fps, int width, int height) throws IOException {
-            String filename = String.valueOf(System.currentTimeMillis());
+    public static String createGif(String filename, List<String> paths, int fps, int width, int height) throws IOException {
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             AnimatedGifEncoder localAnimatedGifEncoder = new AnimatedGifEncoder();
             localAnimatedGifEncoder.start(baos);//start
@@ -46,6 +46,8 @@ public class GifMakeUtil {
             fos.flush();
             baos.close();
             fos.close();
+
+        return path;
     }
 
 }

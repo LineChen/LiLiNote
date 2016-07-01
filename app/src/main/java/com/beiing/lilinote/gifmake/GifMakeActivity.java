@@ -3,6 +3,7 @@ package com.beiing.lilinote.gifmake;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.Movie;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,6 +13,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -19,10 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beiing.baseframe.adapter.for_recyclerview.support.OnItemClickListener;
+import com.beiing.baseframe.supports.OnClickListener;
+import com.beiing.baseframe.utils.FileUtil;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.GifImage;
 import com.beiing.lilinote.constant.Constant;
 import com.bumptech.glide.gifencoder.AnimatedGifEncoder;
+import com.bumptech.glide.load.resource.file.FileDecoder;
+import com.cunoraz.gifview.library.GifView;
+import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,9 +42,9 @@ import base.activity.BaseActivity;
 import base.image_selector.MultiImageSelector;
 import butterknife.Bind;
 import butterknife.OnClick;
+import me.drakeet.materialdialog.MaterialDialog;
 
 public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
-
 
     public static final String TAG = "GifMakeActivity";
     public static final int START_ALBUM_CODE = 0x21;
@@ -90,15 +97,29 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
 
             @Override
             public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, GifImage gifImage, int position) {
+                if(adapter.getMode() == ImageAdapter.MODE_COMMON){
+                    adapter.setMode(ImageAdapter.MODE_DELETE);
+                } else if(adapter.getMode() == ImageAdapter.MODE_DELETE){
+                    adapter.setMode(ImageAdapter.MODE_COMMON);
+                }
                 return false;
+            }
+        });
+
+        adapter.setClickListener(new OnClickListener<GifImage>() {
+            @Override
+            public void onClick(int position, int id, GifImage gifImage) {
+                if(id == R.id.iv_delete){
+                    presenter.getGifImages().remove(position);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
     }
 
-
     @Override
     protected boolean initSwipeBackEnable() {
-        return true;
+        return false;
     }
 
     @Override
@@ -112,16 +133,42 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
         return R.layout.activity_gifmake;
     }
 
-    @OnClick(value = {R.id.tv_generate, R.id.clear})
+    @OnClick(value = {R.id.tv_generate, R.id.clear, R.id.tv_preview})
     public void onClick(View v){
         switch (v.getId()) {
             case R.id.tv_generate://生成gif图
-                Toast.makeText(GifMakeActivity.this, "开始生成Gif图", Toast.LENGTH_SHORT).show();
-                presenter.createGif(50);
+                int size = presenter.getGifImages().size();
+                if(size > 1){
+                    Toast.makeText(GifMakeActivity.this, "开始生成Gif图", Toast.LENGTH_SHORT).show();
+                    presenter.createGif(100, 500, 500);
+                } else {
+                    Toast.makeText(GifMakeActivity.this, "请添加图片", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.clear:
-                presenter.getGifImages().clear();
+                presenter.clear();
                 adapter.notifyDataSetChanged();
+                break;
+
+            case R.id.tv_preview:
+                if(presenter.isHasPreview()){
+                    View contentView = LayoutInflater.from(this).inflate(R.layout.layout_gif_preview, null);
+                    GifImageView gifView = (GifImageView) contentView.findViewById(R.id.gif_view);
+                    byte[] fileBytes = FileUtil.getFileBytes(presenter.getPreViewFile());
+                    Log.e("===", "bytes:" + fileBytes.length);
+                    if (fileBytes != null) {
+                        gifView.setBytes(fileBytes);
+                        gifView.startAnimation();
+                    }
+
+                    MaterialDialog mMaterialDialog = new MaterialDialog(this)
+                            .setView(contentView)
+                            .setCanceledOnTouchOutside(true);
+                    mMaterialDialog.show();
+                } else {
+                    Toast.makeText(GifMakeActivity.this, "没有预览图", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
         }
     }
@@ -134,7 +181,6 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
             if(resultCode == RESULT_OK){
                 List<String> paths = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
                 presenter.solveImages(paths);
-                Log.e("==", "paths:" + paths.size());
             }
         }
     }

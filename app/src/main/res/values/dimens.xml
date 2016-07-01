@@ -13,5 +13,7 @@
     <dimen name="wh_4dp">4dp</dimen>
     <dimen name="wh_8dp">8dp</dimen>
     <dimen name="wh_2dp">2dp</dimen>
+    <dimen name="wh_10dp">10dp</dimen>
+    <dimen name="wh_16dp">16dp</dimen>
 
 </resources>

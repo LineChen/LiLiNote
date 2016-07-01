@@ -34,9 +34,13 @@ import rx.schedulers.Schedulers;
  * </br>
  */
 public class GifMakePresenter extends BasePresenter<IGifMakeView>{
-    int MAX_COUNT = 16;
+    int MAX_COUNT = 20;
 
     List<GifImage> gifImages;
+
+    private String previewFile;
+
+    private boolean hasPreview;
 
     public GifMakePresenter(Context mContext, IGifMakeView mView) {
         super(mContext, mView);
@@ -87,14 +91,18 @@ public class GifMakePresenter extends BasePresenter<IGifMakeView>{
     /**
      * 生成gif图
      */
-    public void createGif(final int fps) {
-
+    public void createGif(final int fps, final int width, final int height) {
+        previewFile = "";
+        hasPreview = false;
+        final String filename = String.valueOf(System.currentTimeMillis());
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    GifMakeUtil.createGif(getPaths(), fps, 500, 500);
+                    previewFile =  GifMakeUtil.createGif(filename, getPaths(), fps, width, height);
+                    subscriber.onCompleted();
                 } catch (IOException e) {
+                    subscriber.onError(e.getCause());
                     e.printStackTrace();
                 }
             }
@@ -103,19 +111,41 @@ public class GifMakePresenter extends BasePresenter<IGifMakeView>{
                 .subscribe(new Observer<String>() {
             @Override
             public void onCompleted() {
+                hasPreview = true;
+                mView.finishCreate(true);
             }
 
             @Override
             public void onError(Throwable e) {
+                hasPreview = false;
                 mView.finishCreate(false);
             }
 
             @Override
             public void onNext(String s) {
-                mView.finishCreate(true);
             }
         });
     }
 
 
+    public void clear() {
+        if(gifImages != null){
+            gifImages.clear();
+            GifImage gif = new GifImage();
+            gif.setType(GifImage.TYPE_ICON);
+            gifImages.add(gif);
+        }
+    }
+
+    public String getPreViewFile() {
+        return previewFile;
+    }
+
+    public boolean isHasPreview() {
+        return hasPreview;
+    }
 }
+
+
+
+
