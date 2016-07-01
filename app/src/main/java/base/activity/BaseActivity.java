@@ -38,6 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         initToolBar();
 
         initSwipBack();
+
+        initPresenter();
+
+        initData();
+
+        initEvent();
     }
 
     private void initSwipBack() {
@@ -156,4 +162,20 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
      * @return
      */
     protected abstract int getContentViewId();
+
+    /**
+     * mvp
+     */
+    protected void initPresenter(){
+
+    }
+
+    protected void initData(){
+
+    }
+
+    protected void initEvent(){
+
+    }
+
 }

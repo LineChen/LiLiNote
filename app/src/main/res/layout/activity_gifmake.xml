@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout"/>
 
-    <GridView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/grid_view"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:horizontalSpacing="5dp"
-        android:numColumns="4"
-        android:verticalSpacing="5dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+         />
 
     <LinearLayout
         android:id="@+id/bottom_view"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -41,4 +41,4 @@
             android:gravity="center"
             android:text="清除" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
