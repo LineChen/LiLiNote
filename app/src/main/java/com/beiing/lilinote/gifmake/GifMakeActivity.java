@@ -26,9 +26,9 @@ import com.beiing.baseframe.utils.FileUtil;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.GifImage;
 import com.beiing.lilinote.constant.Constant;
+import com.beiing.lilinote.utils.DialogUtil;
 import com.bumptech.glide.gifencoder.AnimatedGifEncoder;
 import com.bumptech.glide.load.resource.file.FileDecoder;
-import com.cunoraz.gifview.library.GifView;
 import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -140,7 +140,8 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
                 int size = presenter.getGifImages().size();
                 if(size > 1){
                     Toast.makeText(GifMakeActivity.this, "开始生成Gif图", Toast.LENGTH_SHORT).show();
-                    presenter.createGif(100, 500, 500);
+                    presenter.createGif(200, 500, 500);
+                    DialogUtil.showLoading(this);
                 } else {
                     Toast.makeText(GifMakeActivity.this, "请添加图片", Toast.LENGTH_SHORT).show();
                 }
@@ -192,6 +193,7 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
 
     @Override
     public void finishCreate(boolean b) {
+        DialogUtil.dimiss();
         if(b){
             Toast.makeText(this, "生成成功", Toast.LENGTH_SHORT).show();
         } else {

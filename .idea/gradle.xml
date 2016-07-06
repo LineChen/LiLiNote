@@ -10,7 +10,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseframe" />
-            <option value="$PROJECT_DIR$/gifview" />
             <option value="$PROJECT_DIR$/multi-image-selector" />
           </set>
         </option>
@@ -19,7 +18,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseframe" />
-            <option value="$PROJECT_DIR$/gifview" />
             <option value="$PROJECT_DIR$/multi-image-selector" />
           </set>
         </option>
