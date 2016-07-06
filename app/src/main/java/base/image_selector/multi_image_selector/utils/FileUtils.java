@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector.utils;
+package base.image_selector.multi_image_selector.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -46,7 +46,7 @@ public class FileUtils {
      * @param context Application context
      * @return Cache {@link File directory}.<br />
      * <b>NOTE:</b> Can be null in some unpredictable cases (if SD card is unmounted and
-     * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
+     * {@link Context#getCacheDir() Context.getCacheDir()} returns null).
      */
     public static File getCacheDirectory(Context context) {
         return getCacheDirectory(context, true);
@@ -61,7 +61,7 @@ public class FileUtils {
      * @param preferExternal Whether prefer external location for cache
      * @return Cache {@link File directory}.<br />
      * <b>NOTE:</b> Can be null in some unpredictable cases (if SD card is unmounted and
-     * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
+     * {@link Context#getCacheDir() Context.getCacheDir()} returns null).
      */
     public static File getCacheDirectory(Context context, boolean preferExternal) {
         File appCacheDir = null;

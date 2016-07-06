@@ -20,9 +20,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import base.activity.BaseActivity;
+import base.image_selector.multi_image_selector.MultiImageSelectorFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import me.nereo.multi_image_selector.MultiImageSelectorFragment;
 
 /**
  * Multi image selector

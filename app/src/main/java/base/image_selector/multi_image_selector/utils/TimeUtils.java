@@ -1,9 +1,6 @@
-package me.nereo.multi_image_selector.utils;
-
-import android.media.ExifInterface;
+package base.image_selector.multi_image_selector.utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;

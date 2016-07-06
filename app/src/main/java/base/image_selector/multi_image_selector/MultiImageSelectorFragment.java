@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector;
+package base.image_selector.multi_image_selector;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,6 +28,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beiing.lilinote.R;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
@@ -35,12 +36,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.nereo.multi_image_selector.adapter.FolderAdapter;
-import me.nereo.multi_image_selector.adapter.ImageGridAdapter;
-import me.nereo.multi_image_selector.bean.Folder;
-import me.nereo.multi_image_selector.bean.Image;
-import me.nereo.multi_image_selector.utils.FileUtils;
-import me.nereo.multi_image_selector.utils.ScreenUtils;
+import base.image_selector.multi_image_selector.adapter.FolderAdapter;
+import base.image_selector.multi_image_selector.adapter.ImageGridAdapter;
+import base.image_selector.multi_image_selector.bean.Folder;
+import base.image_selector.multi_image_selector.bean.Image;
+import base.image_selector.multi_image_selector.utils.FileUtils;
+import base.image_selector.multi_image_selector.utils.ScreenUtils;
 
 /**
  * 图片选择Fragment
@@ -48,7 +49,7 @@ import me.nereo.multi_image_selector.utils.ScreenUtils;
  */
 public class MultiImageSelectorFragment extends Fragment {
 
-    public static final String TAG = "me.nereo.multi_image_selector.MultiImageSelectorFragment";
+    public static final String TAG = "MultiImageSelectorFragment";
 
     private static final String KEY_TEMP_FILE = "key_temp_file";
 

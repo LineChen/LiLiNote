@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector.bean;
+package base.image_selector.multi_image_selector.bean;
 
 /**
  * 图片实体

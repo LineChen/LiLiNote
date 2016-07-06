@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector.adapter;
+package base.image_selector.multi_image_selector.adapter;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -11,14 +11,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.beiing.lilinote.R;
 import com.bumptech.glide.Glide;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.nereo.multi_image_selector.MultiImageSelectorFragment;
-import me.nereo.multi_image_selector.R;
-import me.nereo.multi_image_selector.bean.Image;
+import base.image_selector.multi_image_selector.bean.Image;
 
 /**
  * 图片Adapter

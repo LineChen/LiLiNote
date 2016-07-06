@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector.view;
+package base.image_selector.multi_image_selector.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

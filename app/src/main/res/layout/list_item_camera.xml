@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.nereo.multi_image_selector.view.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<base.image_selector.multi_image_selector.view.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#343535"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
@@ -14,4 +14,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</me.nereo.multi_image_selector.view.SquareFrameLayout>
+</base.image_selector.multi_image_selector.view.SquareFrameLayout>

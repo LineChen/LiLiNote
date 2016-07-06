@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector.utils;
+package base.image_selector.multi_image_selector.utils;
 
 import android.content.Context;
 import android.graphics.Point;
