@@ -43,5 +43,4 @@
         <attr name="maxNum" format="integer|reference"/>
         <attr name="editHint" format="string|reference"/>
     </declare-styleable>
-
 </resources>

@@ -1,44 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout"/>
 
-    <GridView
-        android:id="@+id/grid_view"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:horizontalSpacing="5dp"
-        android:numColumns="4"
-        android:verticalSpacing="5dp" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/bottom_view"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_generate"
-            android:layout_width="0dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grid_view"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#30000000"
-            android:gravity="center"
-            android:text="生成GIF图" />
+            />
 
-        <TextView
-            android:id="@+id/clear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="#30000000"
-            android:gravity="center"
-            android:text="清除" />
-    </LinearLayout>
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/bottom_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/wh_16dp"
+            android:orientation="vertical"
+            android:layout_gravity="bottom|left">
+
+            <TextView
+                android:id="@+id/tv_generate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radius_right"
+                android:gravity="center"
+                android:text="生成GIF图"
+                android:textColor="@color/white"
+                android:paddingTop="@dimen/wh_4dp"
+                android:paddingBottom="@dimen/wh_4dp"
+                android:paddingLeft="@dimen/wh_4dp"
+                android:paddingRight="@dimen/wh_8dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radius_right"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/wh_4dp"
+                android:text="预览"
+                android:paddingTop="@dimen/wh_4dp"
+                android:paddingBottom="@dimen/wh_4dp"
+                android:paddingLeft="@dimen/wh_4dp"
+                android:paddingRight="@dimen/wh_8dp"/>
+
+            <TextView
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radius_right"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/wh_4dp"
+                android:text="再来一张"
+                android:paddingTop="@dimen/wh_4dp"
+                android:paddingBottom="@dimen/wh_4dp"
+                android:paddingLeft="@dimen/wh_4dp"
+                android:paddingRight="@dimen/wh_8dp"/>
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

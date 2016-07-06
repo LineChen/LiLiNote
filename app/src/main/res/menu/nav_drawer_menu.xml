@@ -20,7 +20,7 @@
     <item android:title="系统功能">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_mak_gif"
                 android:icon="@drawable/ic_menu_share"
                 android:title="制作GIF图片" />
             <item

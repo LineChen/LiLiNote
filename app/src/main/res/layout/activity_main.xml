@@ -21,13 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!---->
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="5dp"-->
-            <!--android:layout_marginTop="?attr/actionBarSize"-->
-            <!--android:background="@drawable/toolbar_shadow"-->
-            <!--/>-->
             <LinearLayout
                 android:id="@+id/content"
                 android:orientation="vertical"

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import java.io.File;
@@ -176,7 +177,7 @@ public class ImageGridAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(view == null){
-            view = mInflater.inflate(R.layout.list_item_image, viewGroup, false);
+            view = mInflater.inflate(R.layout.list_item_image_new, viewGroup, false);
             holder = new ViewHolder(view);
         }else{
             holder = (ViewHolder) view.getTag();
@@ -191,12 +192,12 @@ public class ImageGridAdapter extends BaseAdapter {
 
     class ViewHolder {
         ImageView image;
-        ImageView indicator;
+        TextView indicator;
         View mask;
 
         ViewHolder(View view){
             image = (ImageView) view.findViewById(R.id.image);
-            indicator = (ImageView) view.findViewById(R.id.checkmark);
+            indicator = (TextView) view.findViewById(R.id.checkmark);
             mask = view.findViewById(R.id.mask);
             view.setTag(this);
         }
@@ -208,11 +209,11 @@ public class ImageGridAdapter extends BaseAdapter {
                 indicator.setVisibility(View.VISIBLE);
                 if(mSelectedImages.contains(data)){
                     // 设置选中状态
-                    indicator.setImageResource(R.drawable.btn_selected);
+//                    indicator.setImageResource(R.drawable.btn_selected);
                     mask.setVisibility(View.VISIBLE);
                 }else{
                     // 未选择
-                    indicator.setImageResource(R.drawable.btn_unselected);
+//                    indicator.setImageResource(R.drawable.btn_unselected);
                     mask.setVisibility(View.GONE);
                 }
             }else{

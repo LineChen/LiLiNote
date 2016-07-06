@@ -1,5 +1,6 @@
 package com.beiing.lilinote.main.ui;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,9 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.beiing.lilinote.R;
+import com.beiing.lilinote.gifmake.GifMakeActivity;
 
 import base.activity.BaseActivity;
-import base.image_selector.MultiImageSelector;
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
@@ -55,15 +56,9 @@ public class MainActivity extends BaseActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.nav_share:
+                    case R.id.nav_mak_gif:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        MultiImageSelector.create()
-                                .showCamera(true) // show camera or not. true by default
-                        .count(3) // max select image size, 9 by default. used width #.multi()
-                        .single() // single mode
-                            .multi() // multi mode, default mode;
-//                            .origin() // original select data set, used width #.multi()
-                            .start(MainActivity.this, 100);
+                        startActivity(new Intent(MainActivity.this, GifMakeActivity.class));
                         break;
 
                     case R.id.nav_setting:

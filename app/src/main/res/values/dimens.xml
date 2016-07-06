@@ -10,5 +10,11 @@
     <!--spinner -->
     <dimen name="three_grid_unit">24dp</dimen>
     <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+    <dimen name="wh_4dp">4dp</dimen>
+    <dimen name="wh_8dp">8dp</dimen>
+    <dimen name="wh_2dp">2dp</dimen>
+    <dimen name="wh_10dp">10dp</dimen>
+    <dimen name="wh_16dp">16dp</dimen>
+    <dimen name="wh_24dp">24dp</dimen>
 
 </resources>
