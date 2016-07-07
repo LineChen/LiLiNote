@@ -3,6 +3,7 @@ package base.image_selector.multi_image_selector.adapter;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,9 +82,15 @@ public class ImageGridAdapter extends BaseAdapter {
      */
     public void select(Image image) {
         if(mSelectedImages.contains(image)){
+            image.position = 0;
             mSelectedImages.remove(image);
+
+            for (Image im : mSelectedImages) {
+                im.position = mSelectedImages.indexOf(im) + 1;
+            }
         }else{
             mSelectedImages.add(image);
+            image.position = mSelectedImages.size();
         }
         notifyDataSetChanged();
     }
@@ -209,11 +216,18 @@ public class ImageGridAdapter extends BaseAdapter {
                 indicator.setVisibility(View.VISIBLE);
                 if(mSelectedImages.contains(data)){
                     // 设置选中状态
-//                    indicator.setImageResource(R.drawable.btn_selected);
+                    indicator.setBackgroundResource(R.drawable.check_mark_oval);
+                    if(data.position > 0){
+                        indicator.setText(String.valueOf(data.position));
+                    }
+//                    else {
+//                        indicator.setText("");
+//                    }
                     mask.setVisibility(View.VISIBLE);
                 }else{
                     // 未选择
-//                    indicator.setImageResource(R.drawable.btn_unselected);
+                    indicator.setBackgroundResource(R.drawable.un_check_mark_oval);
+                    indicator.setText("");
                     mask.setVisibility(View.GONE);
                 }
             }else{

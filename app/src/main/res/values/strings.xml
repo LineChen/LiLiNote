@@ -3,7 +3,7 @@
     <string name="change_theme_key">change_theme</string>
 
     <!--图片选择器-->
-    <string name="mis_folder_all">All Images</string>
+    <string name="mis_folder_all">所有图片</string>
     <string name="mis_preview">Preview</string>
     <string name="mis_msg_no_camera">No system camera found</string>
     <string name="mis_msg_amount_limit">Select images amount is limit</string>
@@ -24,7 +24,7 @@
     <string name="gif_make">GIF制作</string>
 
 <!--image-selector-->
-    <string name="folder_all">All Images</string>
+    <string name="folder_all">所有图片</string>
     <string name="preview">Preview</string>
     <string name="msg_no_camera">No system camera found</string>
     <string name="msg_amount_limit">Select images amount is limit</string>

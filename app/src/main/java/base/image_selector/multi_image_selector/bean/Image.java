@@ -8,6 +8,11 @@ public class Image {
     public String path;
     public String name;
     public long time;
+    public int position;
+
+    public Image(){
+
+    }
 
     public Image(String path, String name, long time){
         this.path = path;

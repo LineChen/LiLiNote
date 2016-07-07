@@ -57,4 +57,5 @@
     <color name="white">#ffffff</color>
     
     <color name="transparent">#0000</color>
+    <color name="mask_black">#88000000</color>
 </resources>
