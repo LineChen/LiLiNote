@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beiing.lilinote.setting.SettingActivity"
+    android:orientation="vertical">
+    <include layout="@layout/toolbar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通用设置"
+                android:textColor="?attr/colorPrimary"
+                android:layout_margin="@dimen/wh_14dp"/>
+
+            <include layout="@layout/view_line"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/mrl_change_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleColor="?attr/colorPrimary"
+                >
+                <TextView
+                    android:id="@+id/tv_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="更换主题"
+                    android:textSize="@dimen/ts_16sp"
+                    android:textColor="@color/black_31"
+                    android:layout_margin="@dimen/wh_14dp"
+                    />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <include layout="@layout/view_line"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

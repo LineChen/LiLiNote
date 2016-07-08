@@ -117,6 +117,11 @@ public class MultiImageSelectorActivity extends BaseActivity
     }
 
     @Override
+    protected boolean openReceiver() {
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

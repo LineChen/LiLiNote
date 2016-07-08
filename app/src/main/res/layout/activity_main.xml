@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/content"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent">
+            </FrameLayout>
             <com.getbase.floatingactionbutton.FloatingActionsMenu
                 android:id="@+id/fab_menu"
                 android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                 android:layout_gravity="bottom|end"
                 android:layout_margin="@dimen/fab_margin"
                 app:layout_behavior="com.beiing.lilinote.behavior.ScrollAwareFABBehavior"
-                fab:fab_addButtonColorNormal="@color/colorAccent"
+                fab:fab_addButtonColorNormal="?attr/colorAccent"
                 fab:fab_icon="@mipmap/add"
                 fab:fab_labelStyle="@style/menu_labels_style"
                 fab:fab_labelsPosition="left">
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fab_1"
-                    fab:fab_colorNormal="@color/colorAccent"
+                    fab:fab_colorNormal="?attr/colorAccent"
                     fab:fab_size="mini"
                     fab:fab_icon="@drawable/ic_lock_outline_black_24dp"
                     fab:fab_title="添加密码"/>
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fab_2"
-                    fab:fab_colorNormal="@color/colorAccent"
+                    fab:fab_colorNormal="?attr/colorAccent"
                     fab:fab_size="mini"
                     fab:fab_icon="@drawable/ic_note_add_black_24dp"
                     fab:fab_title="添加便签"/>

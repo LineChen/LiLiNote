@@ -1,9 +1,13 @@
 package base.activity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,7 +15,9 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.beiing.baseframe.supports.DefaultReceiver;
 import com.beiing.lilinote.R;
+import com.beiing.lilinote.constant.Constant;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import base.utils.ThemeUtils;
@@ -25,12 +31,15 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
  * 描述：
  * </br>
  */
-public abstract class BaseActivity extends AppCompatActivity implements SwipeBackActivityBase{
+public abstract class BaseActivity extends Base implements SwipeBackActivityBase{
+
+
     private SwipeBackActivityHelper sbActivityHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initTheme();
+
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
@@ -44,7 +53,9 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         initData();
 
         initEvent();
+
     }
+
 
     private void initSwipBack() {
         sbActivityHelper = new SwipeBackActivityHelper(this);
@@ -52,12 +63,12 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         setSwipeBackEnable(initSwipeBackEnable());
     }
 
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         sbActivityHelper.onPostCreate();
     }
+
 
     //////////////////////////////////////滑动销毁Activity重写的方法////////////////////////////////
     @Override
@@ -83,7 +94,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     protected void initToolBar(Toolbar toolbar) {
         if (toolbar == null) return;
         toolbar.setBackgroundColor(getColorPrimary());
-        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -101,13 +112,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         }
     }
 
-    /**
-     * 初始化主题
-     */
-    private void initTheme() {
-        ThemeUtils.Theme currentTheme = ThemeUtils.getCurrentTheme(this);
-        ThemeUtils.changeTheme(this, currentTheme);
-    }
 
     /**
      * 获取主题颜色
@@ -153,15 +157,15 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     protected abstract boolean initSwipeBackEnable();
 
     /**
-     * 初始化ToolBar
-     */
-    protected abstract void initToolBar();
-
-    /**
      * 获取布局id
      * @return
      */
     protected abstract int getContentViewId();
+
+    /**
+     * 初始化ToolBar
+     */
+    protected abstract void initToolBar();
 
     /**
      * mvp
@@ -177,5 +181,8 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     protected void initEvent(){
 
     }
+
+
+
 
 }

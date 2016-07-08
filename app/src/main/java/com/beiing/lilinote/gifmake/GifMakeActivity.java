@@ -70,6 +70,11 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
     }
 
     @Override
+    protected boolean openReceiver() {
+        return true;
+    }
+
+    @Override
     protected void initPresenter() {
         presenter = new GifMakePresenter(this, this);
     }

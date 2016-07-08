@@ -1,4 +1,4 @@
-package com.beiing.lilinote.main.ui;
+package com.beiing.lilinote.main.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,6 +13,8 @@ import android.view.MenuItem;
 
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.gifmake.GifMakeActivity;
+import com.beiing.lilinote.setting.SettingActivity;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import base.activity.BaseActivity;
 import butterknife.Bind;
@@ -27,12 +29,20 @@ public class MainActivity extends BaseActivity {
     ActionBarDrawerToggle mToggle;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @Bind(R.id.fab_menu)
+    FloatingActionsMenu fabMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handArrow();
         initNavigationView();
+
+    }
+
+    @Override
+    protected boolean openReceiver() {
+        return true;
     }
 
     /**
@@ -43,7 +53,7 @@ public class MainActivity extends BaseActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_default:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -63,6 +73,7 @@ public class MainActivity extends BaseActivity {
 
                     case R.id.nav_setting:
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
                         break;
                 }
                 return true;
@@ -116,9 +127,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.setting:
+                startActivity(new Intent(this, SettingActivity.class));
                 return true;
             case R.id.about:
                 return true;
