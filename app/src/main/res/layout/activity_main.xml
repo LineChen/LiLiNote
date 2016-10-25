@@ -46,7 +46,7 @@
                     fab:fab_colorNormal="?attr/colorAccent"
                     fab:fab_size="mini"
                     fab:fab_icon="@drawable/ic_lock_outline_black_24dp"
-                    fab:fab_title="添加密码"/>
+                    fab:fab_title="添加日记"/>
                 <com.getbase.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

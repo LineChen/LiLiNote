@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beiing.lilinote.note.NoteEditActivity"
+    android:background="@color/white">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/wh_10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wh_40dp"
+            android:padding="@dimen/wh_4dp"
+            android:background="@drawable/radius_white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/wh_10dp"
+            android:padding="@dimen/wh_4dp"
+            android:gravity="top|left"
+            android:background="@drawable/radius_white"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

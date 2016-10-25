@@ -1,13 +1,7 @@
 package com.beiing.lilinote.gifmake;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
-import android.graphics.Movie;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,18 +17,11 @@ import com.beiing.baseframe.adapter.for_recyclerview.support.OnItemClickListener
 import com.beiing.baseframe.supports.OnClickListener;
 import com.beiing.baseframe.utils.FileUtil;
 import com.beiing.lilinote.R;
-import com.beiing.lilinote.bean.GifImage;
+import com.beiing.lilinote.bean.GifImageFrame;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.utils.DialogUtil;
-import com.bumptech.glide.gifencoder.AnimatedGifEncoder;
-import com.bumptech.glide.load.resource.file.FileDecoder;
 import com.felipecsl.gifimageview.library.GifImageView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import base.activity.BaseActivity;
@@ -88,10 +74,10 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
 
     @Override
     protected void initEvent() {
-        adapter.setOnItemClickListener(new OnItemClickListener<GifImage>() {
+        adapter.setOnItemClickListener(new OnItemClickListener<GifImageFrame>() {
             @Override
-            public void onItemClick(@NonNull ViewGroup parent, @NonNull View view, GifImage gifImage, int position) {
-                if(gifImage.getType() == GifImage.TYPE_ICON){
+            public void onItemClick(@NonNull ViewGroup parent, @NonNull View view, GifImageFrame gifImage, int position) {
+                if(gifImage.getType() == GifImageFrame.TYPE_ICON){
                     MultiImageSelector.create()
                             .showCamera(true) // show camera or not. true by default
                             .count(9) // max select image size, 9 by default. used width #.multi()
@@ -101,7 +87,7 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
             }
 
             @Override
-            public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, GifImage gifImage, int position) {
+            public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, GifImageFrame gifImage, int position) {
                 if(adapter.getMode() == ImageAdapter.MODE_COMMON){
                     adapter.setMode(ImageAdapter.MODE_DELETE);
                 } else if(adapter.getMode() == ImageAdapter.MODE_DELETE){
@@ -111,9 +97,9 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
             }
         });
 
-        adapter.setClickListener(new OnClickListener<GifImage>() {
+        adapter.setClickListener(new OnClickListener<GifImageFrame>() {
             @Override
-            public void onClick(int position, int id, GifImage gifImage) {
+            public void onClick(int position, int id, GifImageFrame gifImage) {
                 if(id == R.id.iv_delete){
                     presenter.getGifImages().remove(position);
                     adapter.notifyDataSetChanged();
@@ -161,7 +147,6 @@ public class GifMakeActivity extends BaseActivity  implements IGifMakeView{
                     View contentView = LayoutInflater.from(this).inflate(R.layout.layout_gif_preview, null);
                     GifImageView gifView = (GifImageView) contentView.findViewById(R.id.gif_view);
                     byte[] fileBytes = FileUtil.getFileBytes(presenter.getPreViewFile());
-                    Log.e("===", "bytes:" + fileBytes.length);
                     if (fileBytes != null) {
                         gifView.setBytes(fileBytes);
                         gifView.startAnimation();

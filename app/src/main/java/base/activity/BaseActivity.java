@@ -35,7 +35,7 @@ public abstract class BaseActivity extends Base implements SwipeBackActivityBase
 
 
     private SwipeBackActivityHelper sbActivityHelper;
-
+    protected Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public abstract class BaseActivity extends Base implements SwipeBackActivityBase
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
-
+        mContext = this;
         initToolBar();
 
         initSwipBack();

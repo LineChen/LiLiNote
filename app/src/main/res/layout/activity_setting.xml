@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.beiing.lilinote.setting.SettingActivity"
     android:orientation="vertical">
+
     <include layout="@layout/toolbar_layout"/>
 
     <ScrollView
@@ -44,10 +45,43 @@
                     android:layout_margin="@dimen/wh_14dp"
                     />
             </com.balysv.materialripple.MaterialRippleLayout>
-
             <include layout="@layout/view_line"/>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="hi哦度粉红色佛山的房i哦度粉红色佛山的房价哦价哦度粉红色"
+                            android:drawableRight="@drawable/ic_menu_back"
+                            />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/tv_image"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="70dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@mipmap/ic_launcher"/>
+                </LinearLayout>
+
+
         </LinearLayout>
+
     </ScrollView>
 
 

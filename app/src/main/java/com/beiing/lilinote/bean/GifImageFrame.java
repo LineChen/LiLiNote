@@ -5,7 +5,7 @@ package com.beiing.lilinote.bean;
  * 描述：
  * </br>
  */
-public class GifImage {
+public class GifImageFrame {
     public static final int TYPE_IMAGE = 0;
     public static final int TYPE_ICON = 1;
 

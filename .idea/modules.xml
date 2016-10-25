@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LiLiNote.iml" filepath="$PROJECT_DIR$/LiLiNote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Strength.iml" filepath="$PROJECT_DIR$/Strength.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseframe/baseframe.iml" filepath="$PROJECT_DIR$/baseframe/baseframe.iml" />
     </modules>

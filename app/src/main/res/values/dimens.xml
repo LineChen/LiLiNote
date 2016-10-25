@@ -20,6 +20,7 @@
     <dimen name="wh_14dp">14dp</dimen>
     <dimen name="wh_16dp">16dp</dimen>
     <dimen name="wh_24dp">24dp</dimen>
+    <dimen name="wh_40dp">40dp</dimen>
 
 
     <dimen name="ts_12sp">12sp</dimen>

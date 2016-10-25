@@ -1,15 +1,12 @@
-package com.beiing.lilinote.main.fragment;
+package com.beiing.lilinote.note;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v7.widget.RecyclerView;
 
 import com.beiing.lilinote.R;
 
 import base.fragment.BaseFragment;
+import butterknife.Bind;
 
 /**
  * Created by chenliu on 2016/7/8.<br/>
@@ -18,6 +15,13 @@ import base.fragment.BaseFragment;
  */
 public class NoteListFragment extends BaseFragment {
 
+
+    @Bind(R.id.rv_note)
+    RecyclerView rvNote;
+
+    public static NoteListFragment getInstatnce(){
+        return new NoteListFragment();
+    }
 
     public NoteListFragment() {
         // Required empty public constructor

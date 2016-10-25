@@ -4,20 +4,30 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.gifmake.GifMakeActivity;
+import com.beiing.lilinote.note.NoteEditActivity;
+import com.beiing.lilinote.note.NoteListFragment;
 import com.beiing.lilinote.setting.SettingActivity;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.beiing.lilinote.strength.StrengthActivity;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.jakewharton.rxbinding.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import base.activity.BaseActivity;
 import butterknife.Bind;
+import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity {
 
@@ -29,8 +39,10 @@ public class MainActivity extends BaseActivity {
     ActionBarDrawerToggle mToggle;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.fab_menu)
-    FloatingActionsMenu fabMenu;
+    @Bind(R.id.fab_1)
+    FloatingActionButton fab1;
+    @Bind(R.id.fab_2)
+    FloatingActionButton fab2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,28 @@ public class MainActivity extends BaseActivity {
         handArrow();
         initNavigationView();
 
+        initFragments();
+
+
+
+    }
+
+    private void initFragments() {
+        NoteListFragment noteListFragment = NoteListFragment.getInstatnce();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(R.id.content, noteListFragment);
+        transaction.commit();
+    }
+
+    @Override
+    protected void initEvent() {
+        RxView.clicks(fab1).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(mContext, NoteEditActivity.class));
+            }
+        });
     }
 
     @Override
@@ -56,6 +90,7 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_default:
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this, StrengthActivity.class));
                         break;
 
                     case R.id.nav_note:

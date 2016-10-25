@@ -1,20 +1,9 @@
 package com.beiing.lilinote.gifmake;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.beiing.baseframe.utils.ImageUtil;
-import com.beiing.lilinote.bean.GifImage;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.gifencoder.AnimatedGifEncoder;
+import com.beiing.lilinote.bean.GifImageFrame;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +14,6 @@ import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -36,7 +24,7 @@ import rx.schedulers.Schedulers;
 public class GifMakePresenter extends BasePresenter<IGifMakeView>{
     int MAX_COUNT = 20;
 
-    List<GifImage> gifImages;
+    List<GifImageFrame> gifImages;
 
     private String previewFile;
 
@@ -46,11 +34,11 @@ public class GifMakePresenter extends BasePresenter<IGifMakeView>{
         super(mContext, mView);
     }
 
-    public List<GifImage> getGifImages() {
+    public List<GifImageFrame> getGifImages() {
         if(gifImages == null){
             gifImages = new ArrayList<>();
-            GifImage gif = new GifImage();
-            gif.setType(GifImage.TYPE_ICON);
+            GifImageFrame gif = new GifImageFrame();
+            gif.setType(GifImageFrame.TYPE_ICON);
             gifImages.add(gif);
         }
         return gifImages;
@@ -60,16 +48,16 @@ public class GifMakePresenter extends BasePresenter<IGifMakeView>{
         int size = gifImages.size() - 1;
         int count = MAX_COUNT - size;
         int sizeP = paths.size();
-        GifImage gif = null;
+        GifImageFrame gif = null;
         if(count < sizeP){
             for (int i = 0; i < count; i++) {
-                gif = new GifImage();
+                gif = new GifImageFrame();
                 gif.setPath(paths.get(i));
                 gifImages.add(gif);
             }
         } else {
             for (int i = 0; i < sizeP; i++) {
-                gif = new GifImage();
+                gif = new GifImageFrame();
                 gif.setPath(paths.get(i));
                 gifImages.add(gif);
             }
@@ -131,8 +119,8 @@ public class GifMakePresenter extends BasePresenter<IGifMakeView>{
     public void clear() {
         if(gifImages != null){
             gifImages.clear();
-            GifImage gif = new GifImage();
-            gif.setType(GifImage.TYPE_ICON);
+            GifImageFrame gif = new GifImageFrame();
+            gif.setType(GifImageFrame.TYPE_ICON);
             gifImages.add(gif);
         }
     }
