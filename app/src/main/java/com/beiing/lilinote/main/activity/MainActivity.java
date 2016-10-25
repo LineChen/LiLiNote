@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
      * 初始化侧边栏布局
      */
     private void initNavigationView() {
-        navigationView.setCheckedItem(R.id.nav_default);
+        navigationView.setCheckedItem(R.id.nav_note_diary);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {

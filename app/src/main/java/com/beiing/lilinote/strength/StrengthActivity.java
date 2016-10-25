@@ -2,12 +2,20 @@ package com.beiing.lilinote.strength;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.beiing.lilinote.R;
 
 import base.activity.BaseActivity;
+import butterknife.Bind;
 
 public class StrengthActivity extends BaseActivity {
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.rv_strength_list)
+    RecyclerView rvStrengthList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,7 @@ public class StrengthActivity extends BaseActivity {
 
     @Override
     protected void initToolBar() {
-
+        super.initToolBar(toolbar);
+        toolbar.setTitle("完成列表");
     }
 }
