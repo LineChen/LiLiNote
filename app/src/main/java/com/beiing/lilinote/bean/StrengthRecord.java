@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Created by chenliu on 2016/10/25.<br/>
- * 描述：锻炼项目
+ * 描述：一天的锻炼记录
  * </br>
  */
 

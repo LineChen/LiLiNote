@@ -50,7 +50,7 @@ public class NoteEditActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_done, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

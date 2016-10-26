@@ -23,6 +23,7 @@
     <dimen name="wh_40dp">40dp</dimen>
     <dimen name="wh_70dp">70dp</dimen>
     <dimen name="wh_100dp">100dp</dimen>
+    <dimen name="wh_150dp">150dp</dimen>
 
 
     <dimen name="ts_12sp">12sp</dimen>
