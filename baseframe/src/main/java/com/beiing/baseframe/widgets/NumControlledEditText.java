@@ -6,10 +6,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.beiing.baseframe.R;
 
 
@@ -18,13 +20,16 @@ import com.beiing.baseframe.R;
  * 描述：控制输入字数限制的输入框
  * </br>
  */
-public class NumControlledEditText extends RelativeLayout{
+public class NumControlledEditText extends RelativeLayout {
 
     private EditText editText;
     private TextView textView;
 
     private int maxNum;//最大可输入字数
     private String editHint;
+    private int textSize = 14;
+
+    private TextChangedListener textChangedListener;
 
     public NumControlledEditText(Context context) {
         this(context, null);
@@ -56,12 +61,18 @@ public class NumControlledEditText extends RelativeLayout{
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.NumControlledEditText);
         maxNum = a.getInt(R.styleable.NumControlledEditText_maxNum, 50);
         editHint = a.getString(R.styleable.NumControlledEditText_editHint);
+        textSize = a.getDimensionPixelSize(R.styleable.NumControlledEditText_textSize, textSize);
         a.recycle();
     }
 
     private void initData() {
         setHint(editHint);
         setCount(0);
+        if (textSize == 14) {
+            editText.setTextSize(14);
+        } else {
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        }
     }
 
     private void initEvent() {
@@ -73,8 +84,21 @@ public class NumControlledEditText extends RelativeLayout{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() > maxNum){
-                    editText.setText(s.subSequence(0, maxNum ));
+                if(textChangedListener != null){
+                    if(textChangedListener.onTextChanged(s, start, before, count)) {
+                        int selectionEnd = editText.getSelectionEnd();
+                        String s1 = s.toString();
+                        String ss1 = s1.substring(0, selectionEnd - Math.abs(before - count));
+                        String ss2 = s1.substring(selectionEnd);
+                        String ss3 = ss1 + ss2;
+                        editText.setText(ss3);
+                        editText.setSelection(start);
+                        return;
+                    }
+                }
+
+                if (s.length() > maxNum) {
+                    editText.setText(s.subSequence(0, maxNum));
                     setCount(maxNum);
                     editText.setError("达到输入上限，不能再输入了！");
                     editText.setSelection(editText.getText().toString().length());
@@ -91,37 +115,47 @@ public class NumControlledEditText extends RelativeLayout{
     }
 
 
-    public void setHint(String hint){
+    public void setHint(String hint) {
         editHint = hint;
         editText.setHint(hint);
     }
 
-    public void setTip(String tip){
+    public void setTip(String tip) {
         textView.setText(tip);
     }
 
-    public void setCount(int count){
+    public void setCount(int count) {
         textView.setText(count + "/" + maxNum);
     }
 
-    public void setMaxNum(int maxNum){
+    public void setMaxNum(int maxNum) {
         this.maxNum = maxNum;
     }
 
-    public void setText(String content){
-        if(!TextUtils.isEmpty(content))
-            if(!content.equals(editHint)){
+    public void setText(String content) {
+        if (!TextUtils.isEmpty(content))
+            if (!content.equals(editHint)) {
                 editText.setText(content);
                 editText.setSelection(content.length());
             }
     }
 
-    public String getText(){
+    public String getText() {
         return editText.getText().toString();
     }
 
 
-    public void setEnabled(boolean enabled){
+    public void setEnabled(boolean enabled) {
         editText.setEnabled(enabled);
     }
+
+
+    public interface TextChangedListener {
+        boolean onTextChanged(CharSequence s, int start, int before, int count);
+    }
+
+    public void addTextChangedListener(TextChangedListener textChangedListener){
+        this.textChangedListener = textChangedListener;
+    }
+
 }

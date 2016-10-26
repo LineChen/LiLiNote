@@ -55,7 +55,26 @@
     <color name="black_8b">#8b8b8b</color>
     <color name="black_46">#465A67</color>
     <color name="white">#ffffff</color>
-    
+
     <color name="transparent">#0000</color>
     <color name="mask_black">#88000000</color>
+
+
+
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <color name="title_c1">#252525</color>
+    <color name="title_c2">#8d8d8d</color>
+    <color name="title_c3">#83878a</color>
+    <color name="title_c4">#777a7d</color>
+    <!--ListView、RecyclerView等分割线线条颜色-->
+    <color name="line_divider_color">#e6e6e6</color>
+
+
+
+
+
+
 </resources>

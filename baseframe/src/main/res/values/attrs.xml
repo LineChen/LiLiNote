@@ -42,5 +42,6 @@
     <declare-styleable name="NumControlledEditText">
         <attr name="maxNum" format="integer|reference"/>
         <attr name="editHint" format="string|reference"/>
+        <attr name="textSize" format="dimension" />
     </declare-styleable>
 </resources>

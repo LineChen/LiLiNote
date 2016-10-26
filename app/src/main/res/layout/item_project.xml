@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_margin_10dp"
+    android:background="@drawable/border_bottom"
+    >
+
+    <cn.refactor.library.SmoothCheckBox
+        android:id="@+id/scb_icon_select"
+        android:layout_width="@dimen/padding_margin_16dp"
+        android:layout_height="@dimen/padding_margin_16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/fab_margin"
+        app:color_checked="?attr/colorPrimary" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/scb_icon_select"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.felipecsl.gifimageview.library.GifImageView
+            android:id="@+id/gif_view"
+            android:layout_width="@dimen/wh_100dp"
+            android:layout_height="@dimen/wh_70dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_project_kind_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginLeft="@dimen/padding_margin_8dp"
+            android:text="坐位体前驱"
+            android:textColor="@color/title_c1"
+            android:textSize="@dimen/ts_16sp"
+             />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -10,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +18,7 @@ import com.beiing.lilinote.gifmake.GifMakeActivity;
 import com.beiing.lilinote.note.NoteEditActivity;
 import com.beiing.lilinote.note.NoteListFragment;
 import com.beiing.lilinote.setting.SettingActivity;
-import com.beiing.lilinote.strength.StrengthActivity;
+import com.beiing.lilinote.strength.activity.StrengthActivity;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -88,7 +87,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.nav_default:
+                    case R.id.nav_strength:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         startActivity(new Intent(MainActivity.this, StrengthActivity.class));
                         break;

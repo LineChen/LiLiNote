@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".strength.activity.StrengthActivity"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <com.beiing.baseframe.widgets.ElasticLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择标签"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加项目"
+                android:onClick="addProjectItem"/>
+
+            <com.beiing.baseframe.widgets.MultiListView
+                android:id="@+id/lv_projects"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/border_top"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_margin_12dp"
+            android:paddingLeft="@dimen/padding_margin_16dp"
+            android:paddingRight="@dimen/padding_margin_16dp"
+            android:paddingTop="@dimen/padding_margin_12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/note" />
+            
+            <com.beiing.baseframe.widgets.NumControlledEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radius_border_gray_solid_white"
+                app:maxNum="200"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </com.beiing.baseframe.widgets.ElasticLayout>
+
+</LinearLayout>

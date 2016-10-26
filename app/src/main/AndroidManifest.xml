@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".note.NoteEditActivity" />
-        <activity android:name=".strength.StrengthActivity"></activity>
+        <activity android:name=".strength.activity.StrengthActivity" />
+        <activity android:name=".strength.activity.AddStrengthActivity" />
+        <activity android:name=".strength.activity.ProjectsActivity"></activity>
     </application>
 
 </manifest>
