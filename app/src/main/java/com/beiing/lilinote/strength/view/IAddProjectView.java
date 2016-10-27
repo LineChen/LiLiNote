@@ -7,4 +7,5 @@ import base.mvp.IBaseView;
  * 描述：
  */
 public interface IAddProjectView extends IBaseView {
+    void addResult(boolean added);
 }

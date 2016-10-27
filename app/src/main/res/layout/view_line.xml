@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/wh_1dp"
-    android:background="@color/md_grey_300"
+    android:layout_height="@dimen/width_line_divider"
+    android:background="@color/line_divider_color"
     />

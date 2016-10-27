@@ -24,6 +24,7 @@
                 android:id="@+id/iv_sample"
                 android:layout_width="@dimen/wh_150dp"
                 android:layout_height="@dimen/wh_150dp"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/icon_plus"/>
 
             <EditText

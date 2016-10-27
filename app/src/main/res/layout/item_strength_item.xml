@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_margin_10dp"
+    android:background="@drawable/border_bottom"
+    >
+
+    <ImageView
+        android:id="@+id/iv_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_delete"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/iv_remove"
+        android:orientation="horizontal"
+        >
+
+        <com.felipecsl.gifimageview.library.GifImageView
+            android:id="@+id/gif_view"
+            android:layout_width="@dimen/wh_100dp"
+            android:layout_height="@dimen/wh_70dp"
+            android:layout_marginRight="@dimen/padding_margin_8dp"
+            android:scaleType="centerCrop"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_project_kind_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="..."
+                android:textColor="@color/title_c1"
+                android:textSize="@dimen/ts_16sp"
+                />
+
+            <LinearLayout
+                android:id="@+id/ll_count"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_item_default"
+               >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重复次数:"
+                    android:layout_marginRight="@dimen/padding_margin_8dp"
+                    android:textColor="@color/title_c1"/>
+
+                <TextView
+                    android:id="@+id/tv_project_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="@dimen/ts_16sp"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_time"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_item_default"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="限定时间:"
+                    android:layout_marginRight="@dimen/padding_margin_8dp"
+                    android:textColor="@color/title_c1"/>
+
+            <TextView
+                android:id="@+id/tv_project_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="3"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="@dimen/ts_16sp"
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分钟"
+                    android:layout_marginLeft="@dimen/padding_margin_8dp"
+                    android:textColor="@color/title_c1"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

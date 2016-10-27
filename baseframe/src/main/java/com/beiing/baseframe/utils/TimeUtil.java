@@ -27,13 +27,14 @@ public final class TimeUtil {
     public static final String DATE_FORMAT_7 = "yyyy-MM";
 
     public static final String DATE_FORMAT_HOUR = "H";//小时
-//
-//    public static final String DATA_FORMAT_DAY = "dd";//天
-//
-//    public static final String DATE_FORMAT_MONTH = "MM";//月
 
     public static final String DATE_FORMAT_YEAR_MONTH = "yyyyMM";
 
+    public static final String DATE_FORMAT_8 = "y.M.d";
+
+    public static final String DATE_FORMAT_9 = "y年m月";
+
+    public static final String DATE_FORMAT_10 = "m月";
 
     /**
      * @param time
@@ -50,6 +51,17 @@ public final class TimeUtil {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         date = sdf.format(time);
         return date;
+    }
+
+    public static String getMonthStr(String date, String format) throws ParseException {
+        String month = null;
+        Date date1 = parseDate(date, format);
+        if(getYear(date1) == getYear(System.currentTimeMillis())){
+           month = getFormatDate(date1, DATE_FORMAT_10);
+        } else {
+            month = getFormatDate(date1, DATE_FORMAT_9);
+        }
+        return month;
     }
 
     /**

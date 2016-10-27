@@ -7,12 +7,14 @@ package com.beiing.lilinote.constant;
  */
 public class Constant {
 
+    public static final String STRENGTH_DIR = "/Strength/";
+
     public static final int REQUEST_CODE_SELECT_IMAGE = 0;
 
     public static final int REQUEST_CODE_SELECT_STRENGTH_PROJECT = 1;
 
-
     public static final String ACTION_CHANGE_THEME = "action_change_theme";
 
+    public static final String INTENT_SELECT_PROJECTS = "intent_select_projects";
 
 }

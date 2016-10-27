@@ -414,7 +414,7 @@ public class MultiImageSelectorFragment extends Fragment {
                 CursorLoader cursorLoader = new CursorLoader(getActivity(),
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION,
                         IMAGE_PROJECTION[4]+">0 AND "+IMAGE_PROJECTION[3]+"=? OR "+IMAGE_PROJECTION[3]+"=? ",
-                        new String[]{"image/jpeg", "image/png"}, IMAGE_PROJECTION[2] + " DESC");
+                        new String[]{"image/jpeg", "image/gif"}, IMAGE_PROJECTION[2] + " DESC");
                 return cursorLoader;
             }else if(id == LOADER_CATEGORY){
                 CursorLoader cursorLoader = new CursorLoader(getActivity(),

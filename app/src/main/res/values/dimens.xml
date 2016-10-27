@@ -16,18 +16,25 @@
     <dimen name="wh_6dp">6dp</dimen>
     <dimen name="wh_8dp">8dp</dimen>
     <dimen name="wh_10dp">10dp</dimen>
+    <dimen name="wh_11dp">11dp</dimen>
     <dimen name="wh_12dp">12dp</dimen>
     <dimen name="wh_14dp">14dp</dimen>
     <dimen name="wh_16dp">16dp</dimen>
     <dimen name="wh_24dp">24dp</dimen>
+    <dimen name="wh_30dp">30dp</dimen>
     <dimen name="wh_40dp">40dp</dimen>
     <dimen name="wh_70dp">70dp</dimen>
+    <dimen name="wh_80dp">80dp</dimen>
+    <dimen name="wh_90dp">90dp</dimen>
     <dimen name="wh_100dp">100dp</dimen>
+    <dimen name="wh_110dp">110dp</dimen>
+    <dimen name="wh_120dp">120dp</dimen>
     <dimen name="wh_150dp">150dp</dimen>
 
 
     <dimen name="ts_12sp">12sp</dimen>
     <dimen name="ts_14sp">14sp</dimen>
+    <dimen name="ts_15sp">15sp</dimen>
     <dimen name="ts_16sp">16sp</dimen>
     <dimen name="ts_18sp">18sp</dimen>
     <dimen name="ts_20sp">20sp</dimen>
@@ -35,6 +42,7 @@
     <!--全局-->
     <dimen name="padding_margin_2dp">2dp</dimen>
     <dimen name="padding_margin_4dp">4dp</dimen>
+    <dimen name="padding_margin_5dp">5dp</dimen>
     <dimen name="padding_margin_6dp">6dp</dimen>
     <dimen name="padding_margin_8dp">8dp</dimen>
     <dimen name="padding_margin_9dp">9dp</dimen>

@@ -9,17 +9,19 @@ import android.widget.TextView;
 import com.beiing.baseframe.supports.ThemeSelectListener;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.constant.Constant;
+import com.beiing.lilinote.strength.activity.AddProjectActivity;
 import com.beiing.lilinote.utils.DialogUtil;
 
 import base.activity.BaseActivity;
 import base.utils.SPUtils;
 import butterknife.Bind;
+import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tv_setting)
+    @Bind(R.id.tv_change_theme)
     TextView tvSetting;
 
     @Override
@@ -50,13 +52,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initEvent() {
-        tvSetting.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
+
+    @OnClick({R.id.tv_change_theme, R.id.tv_add_strength_project})
+    public void onClick(View v){
         switch (v.getId()) {
-            case R.id.tv_setting:
+            case R.id.tv_change_theme:
                 DialogUtil.showColorSelectDialog(this, new ThemeSelectListener() {
                     @Override
                     public void onThemeSelect(int position) {
@@ -65,6 +67,11 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     }
                 });
                 break;
+
+            case R.id.tv_add_strength_project:
+                startActivity(new Intent(this, AddProjectActivity.class));
+                break;
+
         }
     }
 

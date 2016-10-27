@@ -9,28 +9,85 @@
 
     <include layout="@layout/toolbar_layout"/>
 
-    <com.beiing.baseframe.widgets.ElasticLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_margin_10dp">
 
-            <Button
-                android:layout_width="wrap_content"
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="选择标签"/>
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleColor="?attr/colorPrimary"
+                android:background="@drawable/border_bottom"
+                >
 
-            <Button
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2016.10.10"
+                    android:textSize="@dimen/ts_16sp"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_margin="@dimen/wh_14dp"
+                    />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="添加项目"
-                android:onClick="addProjectItem"/>
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleColor="?attr/colorPrimary"
+                android:background="@drawable/border_bottom"
+                >
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="标签"
+                    android:textSize="@dimen/ts_16sp"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_margin="@dimen/wh_14dp"
+                    />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleColor="?attr/colorPrimary"
+                android:background="@drawable/border_bottom"
+                >
+
+                <TextView
+                    android:id="@+id/tv_add_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="添加项目"
+                    android:textSize="@dimen/ts_16sp"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_margin="@dimen/wh_14dp"
+                    />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
 
             <com.beiing.baseframe.widgets.MultiListView
                 android:id="@+id/lv_projects"
+                android:divider="@null"
+                android:dividerHeight="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -38,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@drawable/border_top"
+            android:background="@drawable/border_top_and_bottom"
             android:orientation="vertical"
             android:paddingBottom="@dimen/padding_margin_12dp"
             android:paddingLeft="@dimen/padding_margin_16dp"
@@ -51,6 +108,7 @@
                 android:text="@string/note" />
             
             <com.beiing.baseframe.widgets.NumControlledEditText
+                android:id="@+id/nce_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radius_border_gray_solid_white"
@@ -60,6 +118,6 @@
 
         </LinearLayout>
 
-    </com.beiing.baseframe.widgets.ElasticLayout>
+    </ScrollView>
 
 </LinearLayout>

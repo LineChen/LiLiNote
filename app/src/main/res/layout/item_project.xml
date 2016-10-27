@@ -29,6 +29,7 @@
             android:id="@+id/gif_view"
             android:layout_width="@dimen/wh_100dp"
             android:layout_height="@dimen/wh_70dp"
+            android:scaleType="centerCrop"
             />
 
         <TextView

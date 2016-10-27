@@ -3,22 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".strength.activity.StrengthActivity">
 
     <include layout="@layout/toolbar_layout"/>
 
-
-    <com.beiing.baseframe.widgets.DefaultRefreshLayout
-        android:id="@+id/srl_refresh_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_strength_list"
-            android:layout_width="match_parent"
+        <View
+            android:layout_width="@dimen/wh_1dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
-    </com.beiing.baseframe.widgets.DefaultRefreshLayout>
+            android:background="?attr/colorPrimary"
+            android:layout_marginLeft="@dimen/padding_margin_10dp"
+            android:layout_marginRight="@dimen/padding_margin_10dp"/>
+
+        <com.beiing.baseframe.widgets.DefaultRefreshLayout
+            android:id="@+id/srl_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_strength_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+        </com.beiing.baseframe.widgets.DefaultRefreshLayout>
+
+    </LinearLayout>
+
 
 
 

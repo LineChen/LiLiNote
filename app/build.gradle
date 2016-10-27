@@ -60,4 +60,7 @@ dependencies {
 
 
     compile 'com.google.code.gson:gson:2.7'
+
+    compile 'cn.qqtheme.framework:AndroidPicker:latest.integration'
+
 }

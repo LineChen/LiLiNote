@@ -1,9 +1,12 @@
 package com.beiing.baseframe.utils;
 
+import android.os.Environment;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,5 +81,55 @@ public class FileUtil {
             }
         }
     }
+
+    public static String  saveFile(byte[] bytes, String dirpath, String name) {
+        String path = null;
+        try {
+            if (hasSdcard()) {
+                File dir = new File(Environment.getExternalStorageDirectory().getPath() + dirpath);
+                if (!dir.exists()) dir.mkdir();
+
+                path = Environment.getExternalStorageDirectory().getPath() + dirpath + name;
+
+                File file = new File(path);
+                FileOutputStream fileout;
+                fileout = new FileOutputStream(file);
+                FileChannel fc = fileout.getChannel();
+                fileout.write(bytes);
+                fc.close();
+                fileout.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return path;
+    }
+
+
+    /**删除文件**/
+    public static void deleteFile(String path){
+        File file = new File(path);
+        if(file.exists())
+            file.delete();
+    }
+
+    /**判断文件是否存在**/
+    public static boolean isFileExists(String path){
+        File file = new File(path);
+        return file.exists();
+    }
+
+
+    /** 是否有内存卡 */
+    public static boolean hasSdcard() {
+        if (Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

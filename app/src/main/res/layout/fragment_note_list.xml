@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".note.NoteListFragment"
-    android:background="@drawable/app_launture">
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_note"

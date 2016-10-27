@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".note.NoteEditActivity" />
         <activity android:name=".strength.activity.StrengthActivity" />
-        <activity android:name=".strength.activity.AddStrengthActivity" />
+        <activity android:name=".strength.activity.AddStrengthActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".strength.activity.ProjectsActivity" />
         <activity android:name=".strength.activity.AddProjectActivity"></activity>
     </application>

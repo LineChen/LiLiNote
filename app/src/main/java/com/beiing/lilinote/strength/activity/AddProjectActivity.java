@@ -16,7 +16,9 @@ import com.beiing.lilinote.R;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.strength.presenter.AddProjectPresenter;
 import com.beiing.lilinote.strength.view.IAddProjectView;
+import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.List;
 
 import base.activity.BaseActivity;
@@ -39,7 +41,6 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_project);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit_done, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
 
@@ -80,22 +81,19 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
         switch (item.getItemId()){
             case R.id.edit_done:
                 String name = etName.getText().toString();
-                if(TextUtils.isEmpty(name)){
-                    Toast.makeText(AddProjectActivity.this, "请填写名称", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
                 if(TextUtils.isEmpty(presenter.getPath())){
                     Toast.makeText(AddProjectActivity.this, "请选择示例图", Toast.LENGTH_SHORT).show();
-                    return true;
+                }
+
+                if(TextUtils.isEmpty(name)){
+                    Toast.makeText(AddProjectActivity.this, "请填写名称", Toast.LENGTH_SHORT).show();
                 }
                 presenter.addProject(name);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     protected void initData() {
@@ -123,14 +121,20 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
                 List<String> paths = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
                 if (paths != null && paths.size() > 0) {
                     presenter.setPath(paths.get(0));
+                    Glide.with(this).load(new File(paths.get(0))).into(ivSample);
                 }
             }
         }
     }
 
 
-
-
-
-
+    @Override
+    public void addResult(boolean added) {
+        if(added){
+            Toast.makeText(AddProjectActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+            presenter.setPath("");
+            ivSample.setImageResource(R.mipmap.icon_plus);
+            etName.setText("");
+        }
+    }
 }
