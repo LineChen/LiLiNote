@@ -60,6 +60,7 @@ public abstract class BaseActivity extends Base implements SwipeBackActivityBase
     private void initSwipBack() {
         sbActivityHelper = new SwipeBackActivityHelper(this);
         sbActivityHelper.onActivityCreate();
+        sbActivityHelper.getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         setSwipeBackEnable(initSwipeBackEnable());
     }
 
