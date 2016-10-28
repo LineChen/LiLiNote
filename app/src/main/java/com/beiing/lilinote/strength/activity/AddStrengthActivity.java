@@ -15,12 +15,15 @@ import com.beiing.baseframe.widgets.MultiListView;
 import com.beiing.baseframe.widgets.NumControlledEditText;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.StrengthItem;
+import com.beiing.lilinote.bean.StrengthRecord;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.strength.adapter.StrengthItemAdapter;
 import com.beiing.lilinote.strength.presenter.AddStrengthPresenter;
 import com.beiing.lilinote.strength.view.IAddStrengthView;
 import com.beiing.lilinote.utils.DialogUtil;
+import com.beiing.lilinote.utils.GsonUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 import base.activity.BaseActivity;
@@ -30,6 +33,9 @@ import cn.qqtheme.framework.picker.DatePicker;
 import cn.qqtheme.framework.picker.NumberPicker;
 import cn.qqtheme.framework.picker.OptionPicker;
 
+/**
+ * 添加健身记录
+ */
 public class AddStrengthActivity extends BaseActivity implements IAddStrengthView{
 
     @Bind(R.id.toolbar)
@@ -43,7 +49,6 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
 
     @Bind(R.id.lv_projects)
     MultiListView lvProject;
-
 
     @Bind(R.id.nce_note)
     NumControlledEditText controlledEditText;
@@ -64,7 +69,7 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
 
     @Override
     protected boolean initSwipeBackEnable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -95,7 +100,25 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
         switch (item.getItemId()){
             case R.id.edit_done:
                 DialogUtil.showLoading(this);
-                presenter.saveRecord(tvDate.getText().toString(), tvTag.getText().toString(), controlledEditText.getText().toString());
+                int mode = presenter.getMode();
+                switch (mode){
+                    case Constant.STRENGTH_MODE_ADD:
+                        presenter.saveRecord(tvDate.getText().toString(), tvTag.getText().toString(), controlledEditText.getText());
+                        break;
+
+                    case Constant.STRENGTH_MODE_EDIT:
+                        presenter.updateRecord(tvDate.getText().toString(), tvTag.getText().toString(), controlledEditText.getText());
+                        break;
+
+                    case Constant.STRENGTH_MODE_PLAN_ADD:
+
+                        break;
+
+                    case Constant.STRENGTH_MODE_PLAN_EDIT:
+
+                        break;
+                }
+
                 break;
         }
 
@@ -121,6 +144,28 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
         tvDate.setText(TimeUtil.getFormatDate(System.currentTimeMillis(), TimeUtil.DATE_FORMAT_8));
         adapter = new StrengthItemAdapter(this, presenter.getProjects());
         lvProject.setAdapter(adapter);
+
+        presenter.getIntentData();
+
+        int mode = presenter.getMode();
+        switch (mode){
+            case Constant.STRENGTH_MODE_ADD:
+                toolbar.setTitle("添加");
+                break;
+
+            case Constant.STRENGTH_MODE_EDIT:
+                toolbar.setTitle("修改");
+                break;
+
+            case Constant.STRENGTH_MODE_PLAN_ADD:
+                toolbar.setTitle("添加计划");
+                break;
+
+            case Constant.STRENGTH_MODE_PLAN_EDIT:
+                toolbar.setTitle("修改计划");
+                break;
+        }
+
     }
 
     @Override
@@ -191,12 +236,28 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
     }
 
     @Override
+    public void initRecord(StrengthRecord record) {
+        if (record != null) {
+            tvDate.setText(record.getDate());
+            tvTag.setText(record.getTag());
+            controlledEditText.setText(record.getNote());
+            try {
+                List<StrengthItem> items = GsonUtil.gsonToList(record.getStrengthItemsJson(), StrengthItem.class);
+                presenter.addProjects(items);
+                adapter.notifyDataSetChanged();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void addResult(boolean added) {
         DialogUtil.dimiss();
         if(added){
-            Toast.makeText(AddStrengthActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStrengthActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(AddStrengthActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStrengthActivity.this, "提交失败", Toast.LENGTH_SHORT).show();
         }
     }
 }

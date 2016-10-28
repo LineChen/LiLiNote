@@ -18,6 +18,7 @@ import com.beiing.baseframe.adapter.for_recyclerview.support.OnItemClickListener
 import com.beiing.baseframe.widgets.DefaultRefreshLayout;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.StrengthRecord;
+import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.setting.SettingActivity;
 import com.beiing.lilinote.strength.adapter.RecordAdapter;
 import com.beiing.lilinote.strength.presenter.StrengthRecordPresenter;
@@ -28,6 +29,9 @@ import com.cocosw.bottomsheet.BottomSheet;
 import base.activity.BaseActivity;
 import butterknife.Bind;
 
+/**
+ * 健身列表
+ */
 public class StrengthActivity extends BaseActivity implements IStrengthRecordView{
 
     @Bind(R.id.toolbar)
@@ -53,7 +57,7 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
 
     @Override
     protected boolean initSwipeBackEnable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -77,7 +81,9 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit_add:
-                startActivity(new Intent(this, AddStrengthActivity.class));
+                Intent intent = new Intent(mContext, AddStrengthActivity.class);
+                intent.putExtra(Constant.INTENT_STRENGTH_RECORD_MODE, Constant.STRENGTH_MODE_ADD);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -103,7 +109,10 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
         adapter.setOnItemClickListener(new OnItemClickListener<StrengthRecord>() {
             @Override
             public void onItemClick(@NonNull ViewGroup parent, @NonNull View view, StrengthRecord strengthRecord, int position) {
-
+                Intent intent = new Intent(mContext, AddStrengthActivity.class);
+                intent.putExtra(Constant.INTENT_STRENGTH_RECORD_MODE, Constant.STRENGTH_MODE_EDIT);
+                intent.putExtra(Constant.INTENT_STRENGTH_RECORD, strengthRecord);
+                startActivity(intent);
             }
 
             @Override

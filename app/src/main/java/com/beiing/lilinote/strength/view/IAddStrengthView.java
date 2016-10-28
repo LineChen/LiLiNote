@@ -1,5 +1,7 @@
 package com.beiing.lilinote.strength.view;
 
+import com.beiing.lilinote.bean.StrengthRecord;
+
 import base.mvp.IBaseView;
 
 /**
@@ -9,4 +11,6 @@ import base.mvp.IBaseView;
  */
 public interface IAddStrengthView extends IBaseView{
     void addResult(boolean added);
+
+    void initRecord(StrengthRecord record);
 }

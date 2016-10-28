@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/padding_margin_10dp">
+            android:padding="@dimen/padding_margin_10dp"
+            android:descendantFocusability="blocksDescendants">
 
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"

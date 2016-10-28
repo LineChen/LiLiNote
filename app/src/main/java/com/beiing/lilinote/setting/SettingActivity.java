@@ -55,7 +55,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    @OnClick({R.id.tv_change_theme, R.id.tv_add_strength_project})
+    @OnClick({R.id.tv_change_theme,
+            R.id.tv_add_strength_project,
+            R.id.tv_strength_plan_manage})
     public void onClick(View v){
         switch (v.getId()) {
             case R.id.tv_change_theme:
@@ -70,6 +72,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
             case R.id.tv_add_strength_project:
                 startActivity(new Intent(this, AddProjectActivity.class));
+                break;
+
+            case R.id.tv_strength_plan_manage:
+
                 break;
 
         }
