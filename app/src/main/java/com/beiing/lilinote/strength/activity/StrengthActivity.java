@@ -1,7 +1,9 @@
 package com.beiing.lilinote.strength.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.beiing.baseframe.adapter.for_recyclerview.support.OnItemClickListener;
+import com.beiing.baseframe.widgets.DefaultRefreshLayout;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.StrengthRecord;
 import com.beiing.lilinote.setting.SettingActivity;
 import com.beiing.lilinote.strength.adapter.RecordAdapter;
 import com.beiing.lilinote.strength.presenter.StrengthRecordPresenter;
 import com.beiing.lilinote.strength.view.IStrengthRecordView;
+import com.beiing.lilinote.utils.DialogUtil;
+import com.cocosw.bottomsheet.BottomSheet;
 
 import base.activity.BaseActivity;
 import butterknife.Bind;
@@ -27,6 +32,8 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.srl_refresh_layout)
+    DefaultRefreshLayout refreshLayout;
     @Bind(R.id.rv_strength_list)
     RecyclerView rvStrengthList;
 
@@ -87,6 +94,7 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
         adapter = new RecordAdapter(this, presenter.getRecords());
         rvStrengthList.setAdapter(adapter);
 
+        DialogUtil.showLoading(this);
         presenter.loadRecords();
     }
 
@@ -99,9 +107,30 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
             }
 
             @Override
-            public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, StrengthRecord strengthRecord, int position) {
-
+            public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, final StrengthRecord strengthRecord, final int position) {
+                BottomSheet.Builder builder = new BottomSheet
+                        .Builder(StrengthActivity.this, com.cocosw.bottomsheet.R.style.BottomSheet_Dialog)
+                        .title("确定删除这条记录?");
+                builder.sheet(0, "确定").sheet(1, "取消")
+                        .listener(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == 0) {
+                                    presenter.delete(strengthRecord);
+                                    adapter.getDatas().remove(position);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }).build().show();
                 return false;
+            }
+        });
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.loadRecords();
+                refreshLayout.setRefreshing(false);
             }
         });
     }
@@ -111,5 +140,6 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
         if(loaded){
             adapter.notifyDataSetChanged();
         }
+        DialogUtil.dimiss();
     }
 }

@@ -8,10 +8,9 @@
 
     <include layout="@layout/toolbar_layout"/>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <View
             android:layout_width="@dimen/wh_1dp"
@@ -23,7 +22,8 @@
         <com.beiing.baseframe.widgets.DefaultRefreshLayout
             android:id="@+id/srl_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_strength_list"
@@ -34,7 +34,7 @@
                 android:layout_gravity="center" />
         </com.beiing.baseframe.widgets.DefaultRefreshLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 

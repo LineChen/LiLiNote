@@ -81,9 +81,6 @@ public class StrengthRecord extends BaseModel {
         return "StrengthRecord{" +
                 "id=" + id +
                 ", date='" + date + '\'' +
-                ", tag='" + tag + '\'' +
-                ", note='" + note + '\'' +
-                ", strengthItemsJson='" + strengthItemsJson + '\'' +
                 '}';
     }
 }

@@ -2,6 +2,7 @@ package com.beiing.lilinote.strength.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.beiing.baseframe.adapter.ViewHolder;
 import com.beiing.baseframe.adapter.for_recyclerview.adapter.CommonAdapter;
@@ -21,6 +22,9 @@ import cn.refactor.library.SmoothCheckBox;
  * </br>
  */
 public class ProjectsAdapter extends CommonAdapter<StrengthItem> {
+
+    private boolean showCheckBox = true;
+
     public ProjectsAdapter(Context context, List<StrengthItem> datas) {
         super(context, datas, new ItemSupport<StrengthItem>() {
             @Override
@@ -33,9 +37,13 @@ public class ProjectsAdapter extends CommonAdapter<StrengthItem> {
     @Override
     protected void bindItemView(ViewHolder holder, StrengthItem strengthItem) {
         holder.setText(R.id.tv_project_kind_name, strengthItem.getName());
-
         SmoothCheckBox scb = holder.getView(R.id.scb_icon_select);
-        scb.setChecked(strengthItem.isSelect());
+        if(showCheckBox){
+            scb.setVisibility(View.VISIBLE);
+            scb.setChecked(strengthItem.isSelect());
+        } else {
+            scb.setVisibility(View.GONE);
+        }
 
         GifImageView gifView = holder.getView(R.id.gif_view);
         byte[] fileBytes = FileUtil.getFileBytes(strengthItem.getResPath());
@@ -45,6 +53,9 @@ public class ProjectsAdapter extends CommonAdapter<StrengthItem> {
         }
     }
 
+    public void setShowCheckBox(boolean showCheckBox) {
+        this.showCheckBox = showCheckBox;
+    }
 }
 
 

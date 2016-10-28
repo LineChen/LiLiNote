@@ -1,22 +1,31 @@
 package com.beiing.lilinote.strength.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.beiing.baseframe.adapter.for_recyclerview.support.OnItemClickListener;
 import com.beiing.lilinote.R;
+import com.beiing.lilinote.bean.StrengthItem;
 import com.beiing.lilinote.constant.Constant;
+import com.beiing.lilinote.strength.adapter.ProjectsAdapter;
 import com.beiing.lilinote.strength.presenter.AddProjectPresenter;
 import com.beiing.lilinote.strength.view.IAddProjectView;
 import com.bumptech.glide.Glide;
+import com.cocosw.bottomsheet.BottomSheet;
 
 import java.io.File;
 import java.util.List;
@@ -35,6 +44,11 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
 
     @Bind(R.id.et_name)
     EditText etName;
+
+    @Bind(R.id.rv_projects)
+    RecyclerView rvProjects;
+
+    ProjectsAdapter adapter;
 
     AddProjectPresenter presenter;
 
@@ -97,7 +111,11 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
 
     @Override
     protected void initData() {
-        super.initData();
+        rvProjects.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ProjectsAdapter(this, presenter.getStrengthItemList());
+        adapter.setShowCheckBox(false);
+        rvProjects.setAdapter(adapter);
+        presenter.loadProjects();
     }
 
     @Override
@@ -109,6 +127,31 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
                         .showCamera(true) // show camera or not. true by default
                         .single() // single mode, default mode;
                         .start(AddProjectActivity.this, Constant.REQUEST_CODE_SELECT_IMAGE);
+            }
+        });
+
+        adapter.setOnItemClickListener(new OnItemClickListener<StrengthItem>() {
+            @Override
+            public void onItemClick(@NonNull ViewGroup parent, @NonNull View view, StrengthItem item, int position) {
+
+            }
+
+            @Override
+            public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, final StrengthItem item, final int position) {
+                BottomSheet.Builder builder = new BottomSheet
+                        .Builder(AddProjectActivity.this, com.cocosw.bottomsheet.R.style.BottomSheet_Dialog)
+                        .title("确定删除这个项目?");
+                builder.sheet(0, "确定").sheet(1, "取消")
+                        .listener(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == 0) {
+                                    presenter.delete(item);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }).build().show();
+                return false;
             }
         });
     }
@@ -131,10 +174,18 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView{
     @Override
     public void addResult(boolean added) {
         if(added){
+            presenter.loadProjects();
             Toast.makeText(AddProjectActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
             presenter.setPath("");
             ivSample.setImageResource(R.mipmap.icon_plus);
             etName.setText("");
+        }
+    }
+
+    @Override
+    public void loadResult(boolean loaded) {
+        if(loaded){
+            adapter.notifyDataSetChanged();
         }
     }
 }

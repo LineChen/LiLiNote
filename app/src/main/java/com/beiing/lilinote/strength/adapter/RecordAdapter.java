@@ -44,7 +44,7 @@ public class RecordAdapter extends CommonAdapter<StrengthRecord> {
                 holder.setVisible(R.id.ll_month, true);
                 holder.setText(R.id.tv_month, month);
             } else {
-                    String lastMonth = TimeUtil.getMonthStr(getDatas().get(position).getDate(), TimeUtil.DATE_FORMAT_8);
+                    String lastMonth = TimeUtil.getMonthStr(getDatas().get(position - 1).getDate(), TimeUtil.DATE_FORMAT_8);
                     if(month.equals(lastMonth)){
                         holder.setVisible(R.id.ll_month, false);
                     } else{
@@ -61,8 +61,8 @@ public class RecordAdapter extends CommonAdapter<StrengthRecord> {
                     items) {
                 sb.append(item.getName()).append(" × ").append(item.getCount()).append("\n");
             }
-
-            holder.setText(R.id.tv_projects, sb.toString());
+            String projects = sb.toString();
+            holder.setText(R.id.tv_projects, projects.substring(0, projects.length() - 1));
 
         } catch (ParseException e) {
             e.printStackTrace();

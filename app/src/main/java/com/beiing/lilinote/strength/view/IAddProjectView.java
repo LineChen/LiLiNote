@@ -8,4 +8,6 @@ import base.mvp.IBaseView;
  */
 public interface IAddProjectView extends IBaseView {
     void addResult(boolean added);
+
+    void loadResult(boolean loaded);
 }
