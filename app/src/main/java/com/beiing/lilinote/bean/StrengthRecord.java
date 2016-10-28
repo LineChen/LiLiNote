@@ -75,4 +75,15 @@ public class StrengthRecord extends BaseModel {
     public void setStrengthItemsJson(String strengthItemsJson) {
         this.strengthItemsJson = strengthItemsJson;
     }
+
+    @Override
+    public String toString() {
+        return "StrengthRecord{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", tag='" + tag + '\'' +
+                ", note='" + note + '\'' +
+                ", strengthItemsJson='" + strengthItemsJson + '\'' +
+                '}';
+    }
 }

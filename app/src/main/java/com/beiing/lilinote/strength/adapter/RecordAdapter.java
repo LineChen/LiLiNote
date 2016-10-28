@@ -2,6 +2,7 @@ package com.beiing.lilinote.strength.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.beiing.baseframe.adapter.ViewHolder;
 import com.beiing.baseframe.adapter.for_recyclerview.adapter.CommonAdapter;
@@ -11,10 +12,13 @@ import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.StrengthItem;
 import com.beiing.lilinote.bean.StrengthRecord;
 import com.beiing.lilinote.utils.GsonUtil;
-import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chenliu on 2016/10/27.<br/>
@@ -50,6 +54,7 @@ public class RecordAdapter extends CommonAdapter<StrengthRecord> {
             }
 
             holder.setText(R.id.tv_date, record.getDate());
+
             List<StrengthItem> items = GsonUtil.gsonToList(record.getStrengthItemsJson(), StrengthItem.class);
             StringBuilder sb = new StringBuilder();
             for (StrengthItem item :
@@ -60,6 +65,8 @@ public class RecordAdapter extends CommonAdapter<StrengthRecord> {
             holder.setText(R.id.tv_projects, sb.toString());
 
         } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

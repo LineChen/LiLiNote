@@ -32,9 +32,9 @@ public final class TimeUtil {
 
     public static final String DATE_FORMAT_8 = "y.M.d";
 
-    public static final String DATE_FORMAT_9 = "y年m月";
+    public static final String DATE_FORMAT_9 = "y年M月";
 
-    public static final String DATE_FORMAT_10 = "m月";
+    public static final String DATE_FORMAT_10 = "M月";
 
     /**
      * @param time

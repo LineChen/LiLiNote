@@ -1,6 +1,7 @@
 package com.beiing.lilinote.strength.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.beiing.lilinote.bean.StrengthItem;
 import com.beiing.lilinote.bean.StrengthRecord;
@@ -26,8 +27,8 @@ public class StrengthRecordPresenter extends BasePresenter<IStrengthRecordView> 
     }
 
     public void loadRecords(){
-        List<StrengthRecord> records = new Select().from(StrengthRecord.class).queryList();
-        records.addAll(records);
+        List<StrengthRecord> rds = new Select().from(StrengthRecord.class).queryList();
+        this.records.addAll(rds);
         mView.loadResult(true);
     }
 

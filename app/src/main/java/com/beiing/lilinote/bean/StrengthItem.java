@@ -145,4 +145,17 @@ public class StrengthItem extends BaseModel implements Parcelable{
         result = 31 * result + name.hashCode();
         return result;
     }
+
+
+    @Override
+    public String toString() {
+        return "StrengthItem{" +
+                "id=" + id +
+                ", resPath='" + resPath + '\'' +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", districtTime=" + districtTime +
+                ", isSelect=" + isSelect +
+                '}';
+    }
 }

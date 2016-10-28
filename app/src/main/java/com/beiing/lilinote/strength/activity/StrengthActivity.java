@@ -83,8 +83,8 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
 
     @Override
     protected void initData() {
-        adapter = new RecordAdapter(this, presenter.getRecords());
         rvStrengthList.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecordAdapter(this, presenter.getRecords());
         rvStrengthList.setAdapter(adapter);
 
         presenter.loadRecords();
@@ -100,6 +100,7 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
 
             @Override
             public boolean onItemLongClick(@NonNull ViewGroup parent, @NonNull View view, StrengthRecord strengthRecord, int position) {
+
                 return false;
             }
         });
