@@ -83,10 +83,20 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
             case R.id.edit_add:
                 Intent intent = new Intent(mContext, AddStrengthActivity.class);
                 intent.putExtra(Constant.INTENT_STRENGTH_RECORD_MODE, Constant.STRENGTH_MODE_ADD);
-                startActivity(intent);
+                startActivityForResult(intent, Constant.STRENGTH_MODE_ADD);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == Constant.STRENGTH_MODE_ADD){
+                presenter.loadRecords();
+            }
+        }
     }
 
     @Override

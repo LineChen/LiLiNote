@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.beiing.lilinote.bean.StrengthItem;
+import com.beiing.lilinote.bean.StrengthPlan;
 import com.beiing.lilinote.bean.StrengthRecord;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.strength.view.IAddStrengthView;
@@ -32,6 +33,8 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
 
     StrengthRecord record;
 
+    StrengthPlan plan;
+
     public AddStrengthPresenter(Context mContext, IAddStrengthView mView) {
         super(mContext, mView);
         projects = new ArrayList<>();
@@ -53,11 +56,12 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
                 break;
 
             case Constant.STRENGTH_MODE_PLAN_ADD:
-
+                mView.initPlan(null);
                 break;
 
             case Constant.STRENGTH_MODE_PLAN_EDIT:
-
+                plan = intent.getParcelableExtra(Constant.INTENT_STRENGTH_PLAN);
+                mView.initPlan(plan);
                 break;
         }
 
@@ -107,6 +111,7 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
             mView.addResult(true);
         } catch (Exception e){
             mView.addResult(false);
+            e.printStackTrace();
         }
 
     }
@@ -115,6 +120,7 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
      * 修改记录
      * @param date
      * @param tag
+     *
      * @param note
      */
     public void updateRecord(String date, String tag, String note) {
@@ -138,6 +144,34 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
             mView.addResult(true);
         } catch (Exception e){
             mView.addResult(false);
+            e.printStackTrace();
+        }
+    }
+
+    public void savePlan(String note) {
+        try{
+            plan = new StrengthPlan();
+            plan.setNote(note);
+            String strengthItemsJson = GsonUtil.gsonToString(projects);
+            plan.setStrengthPlanJson(strengthItemsJson);
+            plan.insert();
+            mView.addResult(true);
+        } catch (Exception e){
+            mView.addResult(false);
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePlan(String note) {
+        try{
+            plan.setNote(note);
+            String strengthItemsJson = GsonUtil.gsonToString(projects);
+            plan.setStrengthPlanJson(strengthItemsJson);
+            plan.update();
+            mView.addResult(true);
+        } catch (Exception e){
+            mView.addResult(false);
+            e.printStackTrace();
         }
     }
 
@@ -148,6 +182,5 @@ public class AddStrengthPresenter extends BasePresenter<IAddStrengthView> {
     public int getMode() {
         return mode;
     }
-
 
 }

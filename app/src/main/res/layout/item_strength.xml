@@ -36,6 +36,7 @@
         android:orientation="vertical"
         android:background="@drawable/border_bottom"
         android:layout_marginTop="@dimen/padding_margin_4dp"
+        android:layout_marginBottom="@dimen/padding_margin_4dp"
         android:layout_marginLeft="@dimen/padding_margin_24dp"
         android:padding="@dimen/padding_margin_8dp">
 

@@ -13,6 +13,8 @@ public class Constant {
 
     public static final int REQUEST_CODE_SELECT_STRENGTH_PROJECT = 1;
 
+    public static final int REQUEST_CODE_SELECT_STRENGTH_PLAN = 2;
+
     public static final String ACTION_CHANGE_THEME = "ACTION_CHANGE_THEME";
 
     public static final String INTENT_SELECT_PROJECTS = "INTENT_SELECT_PROJECTS";
@@ -28,7 +30,12 @@ public class Constant {
 
     public static final int STRENGTH_MODE_PLAN_EDIT = 4;
 
+    public static final int STRENGTH_MODE_PLAN_CHOOSE = 5;
+
     /**一天的记录**/
     public static final String INTENT_STRENGTH_RECORD = "INTENT_STRENGTH_RECORD";
+
+    /**plan**/
+    public static final String INTENT_STRENGTH_PLAN = "INTENT_STRENGTH_PLAN";
 
 }

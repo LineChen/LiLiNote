@@ -13,5 +13,5 @@ public class AppDataBase {
 
     public static final String  NAME = "lilinote";
 
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 }

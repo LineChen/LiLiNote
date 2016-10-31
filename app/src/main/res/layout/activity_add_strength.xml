@@ -19,9 +19,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/padding_margin_10dp"
-            android:descendantFocusability="blocksDescendants">
+            >
 
             <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/mrl_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,12 +44,14 @@
             </com.balysv.materialripple.MaterialRippleLayout>
 
             <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/mrl_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:mrl_rippleOverlay="true"
                 app:mrl_rippleColor="?attr/colorPrimary"
                 android:background="@drawable/border_bottom"
+                android:layout_marginBottom="@dimen/padding_margin_10dp"
                 >
 
                 <TextView
@@ -64,13 +67,34 @@
             </com.balysv.materialripple.MaterialRippleLayout>
 
             <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/mrl_add_from_plans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:mrl_rippleOverlay="true"
                 app:mrl_rippleColor="?attr/colorPrimary"
                 android:background="@drawable/border_top_and_bottom"
+                >
+
+                <TextView
+                    android:id="@+id/tv_add_from_plans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="从计划表中添加"
+                    android:textSize="@dimen/ts_16sp"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_margin="@dimen/wh_14dp"
+                    />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleColor="?attr/colorPrimary"
+                android:background="@drawable/border_bottom"
                 >
 
                 <TextView
@@ -85,7 +109,6 @@
 
             </com.balysv.materialripple.MaterialRippleLayout>
 
-
             <com.beiing.baseframe.widgets.MultiListView
                 android:id="@+id/lv_projects"
                 android:divider="@null"
@@ -96,7 +119,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/padding_margin_10dp"
             android:background="@drawable/border_top_and_bottom"
             android:orientation="vertical"
             android:paddingBottom="@dimen/padding_margin_12dp"

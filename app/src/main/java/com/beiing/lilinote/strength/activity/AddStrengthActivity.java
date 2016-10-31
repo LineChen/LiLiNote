@@ -2,6 +2,7 @@ package com.beiing.lilinote.strength.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.beiing.baseframe.supports.OnClickListener;
 import com.beiing.baseframe.utils.TimeUtil;
 import com.beiing.baseframe.widgets.MultiListView;
 import com.beiing.baseframe.widgets.NumControlledEditText;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.bean.StrengthItem;
+import com.beiing.lilinote.bean.StrengthPlan;
 import com.beiing.lilinote.bean.StrengthRecord;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.strength.adapter.StrengthItemAdapter;
@@ -46,6 +49,15 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
 
     @Bind(R.id.tv_tag)
     TextView tvTag;
+
+    @Bind(R.id.mrl_date)
+    MaterialRippleLayout mrlDate;
+
+    @Bind(R.id.mrl_tag)
+    MaterialRippleLayout mrlTag;
+
+    @Bind(R.id.mrl_add_from_plans)
+    MaterialRippleLayout mrlAddFromPlans;
 
     @Bind(R.id.lv_projects)
     MultiListView lvProject;
@@ -111,11 +123,11 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
                         break;
 
                     case Constant.STRENGTH_MODE_PLAN_ADD:
-
+                        presenter.savePlan(controlledEditText.getText());
                         break;
 
                     case Constant.STRENGTH_MODE_PLAN_EDIT:
-
+                        presenter.updatePlan(controlledEditText.getText());
                         break;
                 }
 
@@ -135,6 +147,17 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
                 List<StrengthItem> items = data.getParcelableArrayListExtra(Constant.INTENT_SELECT_PROJECTS);
                 presenter.addProjects(items);
                 adapter.notifyDataSetChanged();
+            } else if(requestCode == Constant.REQUEST_CODE_SELECT_STRENGTH_PLAN){
+                StrengthPlan plan = data.getParcelableExtra(Constant.INTENT_STRENGTH_PLAN);
+                if (plan != null) {
+                    try {
+                        List<StrengthItem> strengthItems = GsonUtil.gsonToList(plan.getStrengthPlanJson(), StrengthItem.class);
+                        presenter.addProjects(strengthItems);
+                        adapter.notifyDataSetChanged();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -211,12 +234,18 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
         });
     }
 
-    @OnClick({R.id.tv_add_project, R.id.tv_date})
+    @OnClick({R.id.tv_add_project, R.id.tv_date, R.id.tv_add_from_plans})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_add_project:
                 Intent intent = new Intent(this, ProjectsActivity.class);
                 startActivityForResult(intent, Constant.REQUEST_CODE_SELECT_STRENGTH_PROJECT);
+                break;
+
+            case R.id.tv_add_from_plans:
+                Intent in = new Intent(this, StrengthPlanActivity.class);
+                in.putExtra(Constant.INTENT_STRENGTH_RECORD_MODE, Constant.STRENGTH_MODE_PLAN_CHOOSE);
+                startActivityForResult(in, Constant.REQUEST_CODE_SELECT_STRENGTH_PLAN);
                 break;
 
             case R.id.tv_date:
@@ -252,10 +281,30 @@ public class AddStrengthActivity extends BaseActivity implements IAddStrengthVie
     }
 
     @Override
+    public void initPlan(StrengthPlan plan) {
+        mrlDate.setVisibility(View.GONE);
+        mrlTag.setVisibility(View.GONE);
+        mrlAddFromPlans.setVisibility(View.GONE);
+
+        if (plan != null) {
+            try {
+                controlledEditText.setText(plan.getNote());
+                List<StrengthItem> items = GsonUtil.gsonToList(plan.getStrengthPlanJson(), StrengthItem.class);
+                presenter.addProjects(items);
+                adapter.notifyDataSetChanged();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void addResult(boolean added) {
         DialogUtil.dimiss();
         if(added){
             Toast.makeText(AddStrengthActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
         } else {
             Toast.makeText(AddStrengthActivity.this, "提交失败", Toast.LENGTH_SHORT).show();
         }

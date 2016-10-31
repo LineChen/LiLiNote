@@ -10,6 +10,7 @@ import com.beiing.baseframe.supports.ThemeSelectListener;
 import com.beiing.lilinote.R;
 import com.beiing.lilinote.constant.Constant;
 import com.beiing.lilinote.strength.activity.AddProjectActivity;
+import com.beiing.lilinote.strength.activity.StrengthPlanActivity;
 import com.beiing.lilinote.utils.DialogUtil;
 
 import base.activity.BaseActivity;
@@ -54,7 +55,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     protected void initEvent() {
     }
 
-
     @OnClick({R.id.tv_change_theme,
             R.id.tv_add_strength_project,
             R.id.tv_strength_plan_manage})
@@ -75,7 +75,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
 
             case R.id.tv_strength_plan_manage:
-
+                Intent intent = new Intent(this, StrengthPlanActivity.class);
+                intent.putExtra(Constant.INTENT_STRENGTH_RECORD_MODE, Constant.STRENGTH_MODE_PLAN_ADD);
+                startActivity(intent);
                 break;
 
         }
