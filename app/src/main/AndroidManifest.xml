@@ -17,7 +17,8 @@
         <activity android:name="base.image_selector.MultiImageSelectorActivity" />
         <activity android:name=".gifmake.GifMakeActivity" />
         <activity android:name=".setting.SettingActivity" />
-        <activity android:name=".main.activity.LauchActivity">
+        <activity android:name=".main.activity.LauchActivity"
+            android:theme="@style/AppTheme.FullScreen.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

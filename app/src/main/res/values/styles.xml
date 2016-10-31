@@ -102,4 +102,11 @@
 
     <style name="DeepPurpleTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="AppTheme.FullScreen.Start" parent="AppTheme.base">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/pic_launch</item>
+    </style>
+
+
 </resources>
