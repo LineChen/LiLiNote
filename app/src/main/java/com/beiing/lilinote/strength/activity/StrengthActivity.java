@@ -93,7 +93,7 @@ public class StrengthActivity extends BaseActivity implements IStrengthRecordVie
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            if(requestCode == Constant.STRENGTH_MODE_ADD){
+            if(requestCode == Constant.STRENGTH_MODE_ADD || requestCode == Constant.STRENGTH_MODE_EDIT){
                 presenter.loadRecords();
             }
         }
