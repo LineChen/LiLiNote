@@ -7,11 +7,11 @@
 
 > 健身记录
 
-![strngth_record](http://)
+![strngth_record](https://github.com/LineChen/LiLiNote/blob/master/scshot/strength_record.png)
 
 > 添加记录
 
-![add_strngth](http://)
+![add_strngth](https://github.com/LineChen/LiLiNote/blob/master/scshot/add_strength.png)
 
 
 
